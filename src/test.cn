@@ -1,0 +1,3 @@
+set x to 10
+set y to 9 plus x
+set z to x times y divided by 2 minus 6
