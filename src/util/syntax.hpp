@@ -6,6 +6,9 @@
 
 namespace syntax
 {
+    const std::unordered_map<std::string, std::string> types = {
+        {"integer", "int"}};
+
     namespace delimiters
     {
         const std::string comment = "#";

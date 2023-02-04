@@ -13,6 +13,8 @@ namespace lex
      * Parses file line-by-line and splits it into tokens
      */
     void parse(std::ifstream &infile, std::ofstream &outfile);
+
+    
 }
 
 #endif
