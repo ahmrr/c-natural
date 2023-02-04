@@ -1,0 +1,32 @@
+set x to 10
+set y to 9 plus x
+set z to x times y divided by 2 minus 6
+set comp1 to x is greater than or equal to y
+set comp2 to z is not equal to x
+
+set x to 9
+set y to 4
+
+declare integer a
+set a to 5
+declare integer b
+set b to 7
+
+print a
+print byte size of a
+
+if x is greater than y,
+    if y is greater than z,
+        print x
+        print z
+    print y
+    print x
+print z
+print y
+
+for i in range 0 to 9,
+    print y
+
+while x is less than y,
+    print y
+    add x to y

@@ -4,18 +4,25 @@ flags := -std=c++11 -Wall -Wextra
 parser := cnc
 includes := util/* lex/*
 
-all: build
+all: $(parser)
 
-build: $(parser).cpp
+$(parser): $(parser).cpp
 	$(CC) $< $(includes) $(flags) -o $(parser)
 
-test: test.cn $(parser)
-	./$(parser) $< $@.cpp -o $@
-	$(CC) $@.cpp -o $@
-	./$@
+test: tests/test.cn $(parser)
+	./$(parser) $< tests/$@.cpp -o tests/$@
+	$(CC) tests/$@.cpp -o tests/$@
+	./tests/$@
 
-helpTest1: test.cn $(parser)
-	gdb ./$(parser) $< $@.cpp -o $@
+test2: tests/test2.cn $(parser)
+	./$(parser) $< tests/$@.cpp -o tests/$@
+	$(CC) tests/$@.cpp -o tests/$@
+	./tests/$@
+
+helpTest1: tests/test.cn $(parser)
+	gdb ./$(parser) $< tests/$@.cpp -o tests/$@
 
 clean:
 	rm -rf $(parser)
+
+everything: clean all test
