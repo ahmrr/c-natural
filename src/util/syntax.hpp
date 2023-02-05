@@ -6,16 +6,16 @@
 
 namespace syntax
 {
+
     const std::unordered_map<std::string, std::string> types = {
         {"integer", "int"},
         {"float", "float"},
         {"character", "char"},
-        {"double", "double"}
+        {"double", "double"},
+        {"int", "int"},
+        {"char", "char"},
+        {"float", "float"}
     };
-
-    const std::unordered_map<std::string, std::string> stl_functions = {
-        {"byte size of ", "sizeof("},
-        {"sqrt of ", "sqrt("}};
 
     namespace delimiters
     {
@@ -26,7 +26,8 @@ namespace syntax
     {
         const std::unordered_map<std::string, std::string> unary = {
             {"location of", "&"},
-            {"value at", "*"}
+            {"value at", "*"},
+            {"byte size of ", "sizeof "}
         };
 
         const std::unordered_map<std::string, std::string> binary = {

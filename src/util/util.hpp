@@ -1,4 +1,5 @@
 #include <fstream>
+#include <unordered_map>
 
 #ifndef UTIL_HPP
 #define UTIL_HPP
@@ -37,6 +38,41 @@ namespace util
         bool declared;
         std::string type;
         std::string name;
+    };
+
+    class fun_data
+    {
+    public:
+        //Default constructor
+        fun_data() {
+            declared = false;
+            name = "NULL";
+            type = "NULL";
+            params = {};
+        }
+
+        //No params
+        fun_data(bool declared, std::string name, std::string type)
+        {
+            this->declared = declared;
+            this->name = name;
+            this->type = type;
+            this->params = {};
+        }
+
+        //Regular function
+        fun_data(bool declared, std::string name, std::string type, std::unordered_map<std::string, std::string> params)
+        {
+            this->declared = declared;
+            this->name = name;
+            this->type = type;
+            this->params = params;
+        }
+
+        bool declared;
+        std::string name;
+        std::string type;
+        std::unordered_map<std::string, std::string> params;
     };
 }
 

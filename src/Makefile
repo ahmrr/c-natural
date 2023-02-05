@@ -4,14 +4,14 @@ flags := -std=c++11 -Wall -Wextra
 
 parser := cnc
 includes := util/* lex/*
-tests := tests/set tests/operators tests/print tests/switch
+tests := tests/set tests/operators tests/print tests/switch tests/libfun tests/functions
 
 # Default make the parse
 all: $(parser)
 
 # Make the parser
 $(parser): $(parser).cpp
-	$(CC) $< $(includes) $(flags) -o $(parser)
+	$(CC) $< -o $(parser) $(includes) $(flags)
 
 # Make the tests
 $(tests): $(parser)
