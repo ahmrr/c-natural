@@ -1,0 +1,8 @@
+set whole number num to 27
+
+print num as octal
+print num as hex
+
+set num to 27 octal
+
+print num as decimal

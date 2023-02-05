@@ -1,0 +1,10 @@
+declare File foo
+set whole number c to 11
+set whole number a to 15
+set foo to new file foo.txt with write privileges
+
+print a + c to foo
+
+print “ equals 11 + 15” to foo
+
+close foo

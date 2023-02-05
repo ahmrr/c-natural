@@ -6,4 +6,5 @@ if x is equal to 10:
     for i in range 0 to 9
         set element at i of testArray to x
         
+        set integer y to 10
         print y

@@ -1,0 +1,9 @@
+set x to 15 
+set y to 12
+
+if x is equal to y,
+    increment x
+otherwise, if x is less than y,
+    decrement x
+otherwise,
+    increment y

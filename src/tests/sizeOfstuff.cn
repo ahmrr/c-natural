@@ -1,0 +1,11 @@
+set whole number x to 15
+
+set size to byte size of x
+
+print size
+print x
+
+for i in range 0 to size
+    shift x 1 bit to the right
+
+print x

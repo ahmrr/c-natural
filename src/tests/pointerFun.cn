@@ -1,0 +1,9 @@
+declare pointer P
+declare double pointer R
+set whole number x to 11
+
+set layer 1 of pointer P to x
+set layer 1 of pointer R to P
+
+get value at layer 1 of P #gets address of x
+get value of layer 2 of R #gets address of P

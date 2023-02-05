@@ -1,0 +1,10 @@
+Declare int function foo with whole number a, whole number b
+
+foo performs:
+	set whole number c to a plus b
+	return c	
+end function declaration
+
+set whole number X to 11
+set whole number Y to 15
+print foo with X, Y

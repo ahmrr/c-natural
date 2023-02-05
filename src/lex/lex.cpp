@@ -1,7 +1,6 @@
 #include "../util/strutil.hpp"
 #include "../util/util.hpp"
 #include "../util/syntax.hpp"
-#include "../util/functions.hpp"
 #include "lex.hpp"
 #include <queue>
 

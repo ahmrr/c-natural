@@ -1,0 +1,9 @@
+define Array nums of whole numbers of size 10
+for i in range 0 to 9:
+	set element at i of nums to i
+
+set whole number count to 0
+for i in range 0 to 9:
+	add element at i of nums to count 
+
+print count
