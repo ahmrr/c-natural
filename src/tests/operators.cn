@@ -1,0 +1,10 @@
+set x to 5
+set y to x plus 7 minus 3
+set z to y divided by 6 times 8 modulo 3
+set pointer to location of x
+set x to value at pointer
+
+set xy to x is less than y
+set yz to y is greater than or equal to z
+set zx to z is not equal to x
+

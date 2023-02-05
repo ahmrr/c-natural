@@ -1,0 +1,5 @@
+print 5
+print 7
+set x to 72
+print location of x
+print 7 plus 6 modulo 2 equals 1

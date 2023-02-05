@@ -23,6 +23,7 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
 
     bool scope_increased = false;
     bool scope_decreased = true;
+    bool switched = false;
 
     while (infile.peek() != EOF)
     {
@@ -182,6 +183,61 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
 
             scope++;
             scope_increased = true;
+        }
+        // * else if 
+        else if (tokens[0] == "otherwise" && tokens[1] == "if") 
+        {   
+            std::string new_line;
+            std::string condition = tokens[2];
+            condition.pop_back();
+
+            new_line = std::string(scope, '\t') + "\telse if (" + condition + ") {\n";
+            outfile << new_line;
+
+            scope++;
+            scope_increased = true;
+        }
+        // * else
+        else if (tokens[0] == "otherwise," && !switched) 
+        {
+            std::string new_line = std::string(scope, '\t') + "else {\n";
+            outfile << new_line;
+
+            scope++;
+            scope_increased = true;
+        }
+        // * switch
+        else if (tokens[0] == "when")
+        {
+            std::string new_line;
+            new_line = std::string(scope, '\t') + "switch(" + tokens[1] + ") {\n";
+
+            outfile << new_line;
+
+            scope++;
+            scope_increased = true;
+            switched = true;
+        }
+        // * case
+        else if (tokens[0] == "is")
+        {
+            std::string new_line;
+            new_line = std::string(scope, '\t') + "case " + tokens[1] + "{\n";
+
+            outfile << new_line;
+
+            scope++;
+            scope_increased = true;
+        }
+        // * default
+        else if (tokens[0] == "otherwise" && switched) 
+        {
+            std::string new_line;
+            new_line = std::string(scope, '\t') + "default {\n";
+
+            outfile << new_line;
+            scope++;
+            scope_increased;
         }
         // * for
         else if (tokens[0] == "for")

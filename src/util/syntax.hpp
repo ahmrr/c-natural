@@ -24,7 +24,10 @@ namespace syntax
 
     namespace operators
     {
-        const std::unordered_map<std::string, std::string> unary;
+        const std::unordered_map<std::string, std::string> unary = {
+            {"location of", "&"},
+            {"value at", "*"}
+        };
 
         const std::unordered_map<std::string, std::string> binary = {
             {"plus", "+"},
@@ -37,7 +40,16 @@ namespace syntax
             {"is greater than", ">"},
             {"is less than", "<"},
             {"is less than or equal to", "<="},
-            {"is greater than or equal to", ">="}};
+            {"is greater than or equal to", ">="},
+            {"and", "&&"},
+            {"or", "||"},
+            {"not", "!"},
+            {"AND", "&"},
+            {"OR", "|"},
+            {"XOR", "^"},
+            {"NOT", "~"},
+            {"shifted left by", "<<"},
+            {"shifted right by", ">>"}};
     };
 }
 

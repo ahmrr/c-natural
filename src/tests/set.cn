@@ -1,0 +1,3 @@
+set integer x to 5
+set character y to 'h'
+set float z to 7.0

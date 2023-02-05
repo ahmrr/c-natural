@@ -1,28 +1,32 @@
+#Vars
 CC := g++
 flags := -std=c++11 -Wall -Wextra
 
 parser := cnc
 includes := util/* lex/*
+tests := tests/set tests/operators tests/print
 
+#Default make the parse
 all: $(parser)
 
+#Make the parser
 $(parser): $(parser).cpp
 	$(CC) $< $(includes) $(flags) -o $(parser)
 
-test: tests/test.cn $(parser)
-	./$(parser) $< tests/$@.cpp -o tests/$@
-	$(CC) tests/$@.cpp -o tests/$@
-	./tests/$@
+#Make the tests
+$(tests): $(parser)
+	./$(parser) $@.cn $@.cpp
+	$(CC) $@.cpp -o $@
+	./$@
 
-test2: tests/test2.cn $(parser)
-	./$(parser) $< tests/$@.cpp -o tests/$@
-	$(CC) tests/$@.cpp -o tests/$@
-	./tests/$@
+#Run all tests
+test: $(tests)
 
-helpTest1: tests/test.cn $(parser)
-	gdb ./$(parser) $< tests/$@.cpp -o tests/$@
-
+#Clean all exe's 
 clean:
 	rm -rf $(parser)
+	rm -rf $(tests)
+	rm -rf tests/*.cpp
 
-everything: clean all test
+#Ahmer's beautiful command
+each: clean all test
