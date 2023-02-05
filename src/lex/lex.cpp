@@ -83,6 +83,11 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
 
             std::size_t location = line.find(stl_function.second);
 
+            if (stl_function.first == "raised to ") 
+            {
+                line.replace(location + stl_function.second.length() + 1, 4, line.at(location - 2) + "," + line.at(location + 1)))
+            }
+
             if (location != std::string::npos)
             {
                 line.replace(line.find(stl_function.second) + stl_function.second.length() + 1, 1, ")");

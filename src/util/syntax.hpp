@@ -15,7 +15,8 @@ namespace syntax
 
     const std::unordered_map<std::string, std::string> stl_functions = {
         {"byte size of ", "sizeof("},
-        {"sqrt of ", "sqrt("}};
+        {"sqrt of ", "sqrt("},
+        {"raised to ", "pow("}};
 
     namespace delimiters
     {
