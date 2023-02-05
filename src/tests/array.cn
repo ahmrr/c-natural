@@ -1,4 +1,9 @@
 set x to 10
 if x is equal to 10:
     define array testArray of int of size 10
-    set x to element at 3 of testArray
+    set element at 7 of testArray to 1503
+    set x to element at 7 of testArray
+    for i in range 0 to 9
+        set element at i of testArray to x
+        
+        print y

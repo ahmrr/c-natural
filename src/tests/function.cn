@@ -1,7 +1,17 @@
-declare char variable
+declare int variable
 
-
-declare int function testFunc with int var1 float var2 double help
+declare void function testFunc with int var1 float var2 double help
     set x to 10
     declare char exampleChar
-    return x + 10
+    print var2 + 10
+    return
+
+declare int function testFuncReturn with int var1 float var2 double help
+    set x to 10
+    declare char exampleChar
+    return var1 + x * 2
+
+call testFunc with 10, 20.5, 4.3
+call testFuncReturn to variable with 10, 20.5, 4.3
+
+print variable

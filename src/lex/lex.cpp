@@ -21,7 +21,9 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
     theQueue->push("int main() {\n");
 
     // * hashmaps for variables and functions
-    std::unordered_map<std::string, util::var_data> variables;
+    std::unordered_map<std::string, util::var_data> mainVariables;
+    std::unordered_map<std::string, util::var_data> funcVariables;
+    std::unordered_map<std::string, util::var_data> structVariables;
     std::unordered_map<std::string, util::fun_data> functions;
 
     // * level of scope
@@ -104,15 +106,37 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
         if (tokens[0] == "set")
         {
             // * get
-            if (tokens[3] == "element") {
-                std::string dst_name = tokens[1];
-                std::string index = tokens[5];
-                std::string name = tokens[7];
+            if (tokens[1] == "element" || tokens[3] == "element") {
 
-                std::string new_line = std::string(scope, '\t') + "\t" + dst_name + " = " + name + "[" + index + "];\n";
-                theQueue->push(new_line);
+                if (tokens[2] != "at") {
+
+                    std::string index = tokens[5];
+                    std::string name = tokens[7];
+                    std::string dst = tokens[1];
+
+                    std::string new_line = std::string(scope, '\t') + "\t" + dst + " = " + name + "[" + index + "];\n";
+                    theQueue->push(new_line);
+
+                } else {
+
+                    std::string value = tokens[7];
+                    std::string index = tokens[3];
+                    std::string name = tokens[5];
+
+                    std::string new_line = std::string(scope, '\t') + "\t" + name + "[" + index + "] = " + value + ";\n";
+                    theQueue->push(new_line);
+
+                }
 
             } else {
+
+                std::unordered_map<std::string, util::var_data> *variables;
+
+                if (theQueue == &functionProgram) {
+                    variables = &funcVariables;
+                } else {
+                    variables = &mainVariables;
+                }
 
                 // * if four tokens are given
                 if (tokens.size() == 4)
@@ -122,10 +146,10 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
                     std::string new_line;
 
                     // * if variable hasn't been declared
-                    if (variables.find(variable) == variables.end())
+                    if (variables->find(variable) == variables->end())
                     {
                         util::var_data data(variable);
-                        variables[variable] = data;
+                        (*variables)[variable] = data;
 
                         new_line = "\tauto " + variable + " = " + value + ";\n";
                     }
@@ -144,10 +168,10 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
                     std::string new_line;
 
                     // * if variable hasn't been declared
-                    if (variables.find(variable) == variables.end())
+                    if (variables->find(variable) == variables->end())
                     {
                         util::var_data data = util::var_data(type, variable);
-                        variables[variable] = data;
+                        (*variables)[variable] = data;
 
                         new_line = "\t" + syntax::types.at(type) + " " + variable + " = " + value + ";\n";
                     }
@@ -159,6 +183,15 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
                     theQueue->push(new_line);
                 }
             }
+        }
+        else if (tokens[0] == "get") {
+            // DOESNT WORK
+            std::string index = tokens[3];
+            std::string name = tokens[5];
+
+            std::string new_line = std::string(scope, '\t') + "\t" + name + "[" + index + "]";
+            theQueue->push(new_line);
+
         }
         // * define statement
         else if (tokens[0] == "define") 
@@ -179,6 +212,52 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
                 
             }
         }
+        // * call
+        else if (tokens[0] == "call") {
+            
+            
+            if (tokens[2] == "with") {
+            
+                std::string funcName = tokens[1];
+                std::string new_line = funcName + "(";
+
+                for (int i = 3; i < tokens.size(); ++i) {
+                    new_line += tokens[i];
+                    if (i+1 < tokens.size()) {
+                        new_line += " ";
+                    }
+                }
+
+                new_line += ");\n";
+
+                theQueue = &mainProgram;
+                theQueue->push(new_line);
+
+            } else if (tokens[2] == "to") {
+            
+                std::string funcName = tokens[1];
+                std::string dstVal = tokens[3];
+                std::string new_line = dstVal + " = " + funcName + "(";
+
+                if (tokens.size() > 5) {
+                    for (int i = 5; i < tokens.size(); ++i) {
+                        new_line += tokens[i];
+                        if (i+1 < tokens.size()) {
+                            new_line += " ";
+                        }
+                    }
+                }
+
+                new_line += ");\n";
+
+                theQueue = &mainProgram;
+                theQueue->push(new_line);
+
+            }
+
+
+
+        }
         // * declare statement
         else if (tokens[0] == "declare")
         {
@@ -189,6 +268,7 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
                 std::string name = tokens[3];
                 std::string new_line;
                 theQueue = &functionProgram;
+                funcVariables.clear();
 
                 //Has params
                 if (tokens.size() > 4)
@@ -269,8 +349,16 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
                 std::cout << "variable: " << variable << std::endl;
                 std::cout << "type: " << type << std::endl;
 
+                // std::unordered_map<std::string, util::var_data> *variables;
+
+                // if (theQueue == &structProgram) {
+                //     variables = &structVariables;
+                // } else {
+                //     variables = &mainVariables;
+                // }
+
                 util::var_data data = util::var_data(variable);
-                variables[variable] = data;
+                mainVariables[variable] = data;
 
                 new_line = std::string(scope, '\t') + "\t" + syntax::types.at(type) + " " + variable + ";\n";
                 theQueue->push(new_line);
@@ -375,7 +463,6 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
             std::string new_line = "return";
 
             if (theQueue == &functionProgram) {
-
                 if (tokens.size() > 1) {
                     new_line += " ";
                     for (int i = 1; i < tokens.size(); ++i) {
@@ -389,6 +476,7 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
 
             new_line += ";\n}\n";
             theQueue->push(new_line);
+            theQueue = &mainProgram;
         }
         // * for statement
         else if (tokens[0] == "for")
@@ -397,9 +485,9 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
             std::string variable = tokens[1];
             std::string min = tokens[4];
             std::string max = tokens[6];
-            max.pop_back();
+            //max.pop_back();
 
-            new_line = std::string(scope, '\t') + "\tfor (int i = " + min + "; i <= " + max + "; i++) {\n";
+            new_line = std::string(scope, '\t') + "\tfor (int " + variable + " = " + min + "; " + variable + " <= " + max + "; i++) {\n";
             theQueue->push(new_line);
 
             scope++;
