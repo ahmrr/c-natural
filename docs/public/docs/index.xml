@@ -5,7 +5,7 @@
     <link>/docs/</link>
     <description>Recent content in Overview on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 28 Nov 2018 15:14:39 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Feb 2019 19:27:37 +1000</lastBuildDate>
     
 	<atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -31,15 +31,6 @@ hugo version </description>
 Install theme Copy or git clone this theme into the sites themes folder mynewsite/themes
 Install with Git cd mynewsite cd themes git clone https://github.com/jugglerx/hugo-whisper-theme.git Install from .zip file You can download the .zip file located here https://github.com/JugglerX/hugo-whisper-theme/archive/master.zip.
 Extract the downloaded .zip inside the themes folder. Rename the extracted folder from hugo-whisper-theme-master -&amp;gt; hugo-whisper-theme.</description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>/docs/configure/</link>
-      <pubDate>Mon, 11 Feb 2019 19:30:08 +1000</pubDate>
-      
-      <guid>/docs/configure/</guid>
-      <description>Syntax highlighting and menus can be configured via &lt;code&gt;config.toml&lt;/code&gt;.</description>
     </item>
     
     <item>
