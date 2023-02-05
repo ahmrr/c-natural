@@ -24,6 +24,7 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
     bool scope_increased = false;
     bool scope_decreased = true;
     bool switched = false;
+    bool first_case = true;
 
     while (infile.peek() != EOF)
     {
@@ -143,7 +144,6 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
 
                     new_line = "\t" + syntax::types.at(type) + " " + variable + " = " + value + ";\n";
                 }
-
                 else
                 {
                     new_line = "\t" + variable + " = " + value + ";\n";
@@ -209,7 +209,11 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
         // * switch
         else if (tokens[0] == "when")
         {
+            first_case = true;
+
             std::string new_line;
+            tokens[1].pop_back();
+            
             new_line = std::string(scope, '\t') + "switch(" + tokens[1] + ") {\n";
 
             outfile << new_line;
@@ -222,23 +226,34 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
         else if (tokens[0] == "is")
         {
             std::string new_line;
-            new_line = std::string(scope, '\t') + "case " + tokens[1] + "{\n";
+            tokens[1].pop_back();
+
+            new_line = std::string(scope, '\t') + "case " + tokens[1] + ": {\n";
 
             outfile << new_line;
 
             scope++;
             scope_increased = true;
+            if (first_case) first_case = false;
         }
         // * default
-        else if (tokens[0] == "otherwise" && switched) 
+        else if (tokens[0] == "otherwise," && switched) 
         {
             std::string new_line;
-            new_line = std::string(scope, '\t') + "default {\n";
+            new_line = std::string(scope, '\t') + "default: {\n";
 
             outfile << new_line;
             scope++;
-            scope_increased;
+            scope_increased = true;
+            switched = false;
         }
+        // * break
+        else if (tokens[0] == "break") {
+            std::string new_line;
+            new_line = std::string(scope, '\t') + "break;\n";
+            outfile << new_line;
+        }
+        // * 
         // * for
         else if (tokens[0] == "for")
         {
@@ -327,7 +342,6 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
             new_line = std::string(scope, '\t') + "\t" + tokens[1] + "--;\n";
             outfile << new_line;
         }
-
         // * otherwise
         else
         {

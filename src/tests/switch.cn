@@ -1,0 +1,16 @@
+set x to 9
+when x,
+    is 10,
+        print 10
+        break
+    is 11,
+        print 11
+        break
+    is 9,
+        print 9
+        break
+    is 12,
+        print 12
+        break
+    otherwise,
+        print 69
