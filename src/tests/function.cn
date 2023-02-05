@@ -1,0 +1,7 @@
+declare char variable
+
+
+declare int function testFunc with int var1 float var2 double help
+    set x to 10
+    declare char exampleChar
+    return x + 10

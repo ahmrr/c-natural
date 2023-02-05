@@ -1,4 +1,9 @@
 #include <fstream>
+#include <string>
+#include <unordered_map>
+#include <iostream>
+#include <fstream>
+#include <vector>
 
 #ifndef LEX_HPP
 #define LEX_HPP

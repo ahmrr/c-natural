@@ -1,0 +1,6 @@
+declare structure mom:
+    declare integer a
+    declare character b
+end
+
+print "hey"
