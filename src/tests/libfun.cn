@@ -1,0 +1,2 @@
+set integer x to 2 raised to 4
+print x
