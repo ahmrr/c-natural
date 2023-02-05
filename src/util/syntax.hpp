@@ -17,11 +17,6 @@ namespace syntax
         {"float", "float"}
     };
 
-    const std::unordered_map<std::string, std::string> stl_functions = {
-        {"byte size of ", "sizeof("},
-        {"sqrt of ", "sqrt("},
-        {"raised to ", "pow("}};
-
     namespace delimiters
     {
         const std::string comment = "#";
@@ -31,7 +26,8 @@ namespace syntax
     {
         const std::unordered_map<std::string, std::string> unary = {
             {"location of", "&"},
-            {"value at", "*"}
+            {"value at", "*"},
+            {"byte size of ", "sizeof "}
         };
 
         const std::unordered_map<std::string, std::string> binary = {

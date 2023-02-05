@@ -2,6 +2,6 @@
 #include <cmath>
 
 int main() {
-	int testArray[10];
+	std::cout << x << std::endl;
 	return 0;
 }
