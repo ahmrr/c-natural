@@ -6,11 +6,15 @@
 
 namespace syntax
 {
+
     const std::unordered_map<std::string, std::string> types = {
         {"integer", "int"},
         {"float", "float"},
         {"character", "char"},
-        {"double", "double"}
+        {"double", "double"},
+        {"int", "int"},
+        {"char", "char"},
+        {"float", "float"}
     };
 
     const std::unordered_map<std::string, std::string> stl_functions = {

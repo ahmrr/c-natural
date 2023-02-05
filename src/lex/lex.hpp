@@ -14,6 +14,8 @@ namespace lex
      */
     void parse(std::ifstream &infile, std::ofstream &outfile);
 
+    const int TAB_SPACE = 4;
+
     
 }
 
