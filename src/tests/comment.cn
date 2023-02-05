@@ -1,0 +1,10 @@
+set integer x to 5 # this is a comment
+set y to 7 # this is another comment
+# you can have other comments like this
+
+
+
+# or this
+
+set y to 91.82
+#hi!
