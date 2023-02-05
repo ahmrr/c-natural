@@ -4,7 +4,7 @@ flags := -std=c++11 -Wall -Wextra
 
 parser := cnc
 includes := util/* lex/*
-tests := tests/set tests/operators tests/print tests/switch tests/libfun tests/functions
+tests := tests/set tests/operators tests/print tests/switch tests/struct tests/array tests/function
 
 # Default make the parse
 all: $(parser)
@@ -20,7 +20,7 @@ $(tests): $(parser)
 	./$@
 
 # Run all tests
-test: $(tests)
+test: clean $(tests)
 
 # Clean all exe's 
 clean:

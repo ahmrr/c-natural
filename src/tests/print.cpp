@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 
 int main() {
 	std::cout << 5 << std::endl;

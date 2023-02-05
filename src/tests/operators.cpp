@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 
 int main() {
 	auto x = 5;

@@ -1,8 +1,7 @@
-#include <string>
-#include <unordered_map>
-
 #ifndef SYNTAX_HPP
 #define SYNTAX_HPP
+#include <string>
+#include <unordered_map>
 
 namespace syntax
 {
