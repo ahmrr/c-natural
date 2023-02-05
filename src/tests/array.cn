@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 set x to 10
 if x is equal to 10:
     define array testArray of int of size 10
@@ -7,3 +8,8 @@ if x is equal to 10:
         set element at i of testArray to x
         
         print y
+=======
+set x to 10
+define array testArray of int of size 10
+set x to element at 3 of testArray
+>>>>>>> 36512d51c3a5deec5c2f7034605e782b6c06625f

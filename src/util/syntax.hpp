@@ -8,17 +8,16 @@ namespace syntax
 
     const std::unordered_map<std::string, std::string> types = {
         {"integer", "int"},
-        {"float", "float"},
         {"character", "char"},
-        {"double", "double"},
-        {"int", "int"},
-        {"char", "char"},
-        {"float", "float"}
-    };
+        {"boolean", "bool"},
+        {"nothing", "NULL"}};
 
     namespace delimiters
     {
         const std::string comment = "#";
+        const std::string string = "\"";
+        const std::string array_left = "[";
+        const std::string array_right = "]";
     };
 
     namespace operators
@@ -26,8 +25,7 @@ namespace syntax
         const std::unordered_map<std::string, std::string> unary = {
             {"location of", "&"},
             {"value at", "*"},
-            {"byte size of ", "sizeof "}
-        };
+            {"byte size of ", "sizeof "}};
 
         const std::unordered_map<std::string, std::string> binary = {
             {"plus", "+"},

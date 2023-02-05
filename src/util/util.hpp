@@ -1,4 +1,6 @@
 #include <fstream>
+#include <vector>
+#include <string>
 #include <unordered_map>
 
 #ifndef UTIL_HPP
@@ -14,12 +16,12 @@ namespace util
     class var_data
     {
     public:
-        var_data() 
+        var_data()
         {
             this->declared = false;
             this->type = "NULL";
             this->name = "NULL";
-        }        
+        }
 
         var_data(std::string name)
         {
@@ -43,15 +45,16 @@ namespace util
     class fun_data
     {
     public:
-        //Default constructor
-        fun_data() {
+        // Default constructor
+        fun_data()
+        {
             declared = false;
             name = "NULL";
             type = "NULL";
             params = {};
         }
 
-        //No params
+        // No params
         fun_data(bool declared, std::string name, std::string type)
         {
             this->declared = declared;
@@ -60,7 +63,7 @@ namespace util
             this->params = {};
         }
 
-        //Regular function
+        // Regular function
         fun_data(bool declared, std::string name, std::string type, std::unordered_map<std::string, std::string> params)
         {
             this->declared = declared;
@@ -74,6 +77,8 @@ namespace util
         std::string type;
         std::unordered_map<std::string, std::string> params;
     };
+
+    std::vector<std::string> tokenize(std::string line);
 }
 
 #endif
