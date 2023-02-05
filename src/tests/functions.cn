@@ -1,1 +1,14 @@
 declare integer function add
+    print 2
+
+declare integer function subtract with integer x, integer y
+    print 3
+    set x to 9
+    print x plus 3 minus 1
+
+set integer x to 9
+print x
+
+declare integer function multiply with integer x, integer y
+    print 3
+    set x to 9
