@@ -5,6 +5,12 @@
 
 namespace syntax
 {
+    // * remove ordinal number suffixes
+    const std::vector<std::string> ordinal_suffixes = {
+        "rd",
+        "th",
+        "st",
+        "nd"};
 
     const std::unordered_map<std::string, std::string> types = {
         {"integer", "int"},
@@ -48,7 +54,11 @@ namespace syntax
             {"NOT", "~"},
             {"shifted left by", "<<"},
             {"shifted right by", ">>"}};
-    };
+
+        const std::unordered_map<std::string, std::string> separatory = {
+            {"sqrt of", "sqrt("},
+            {"to the power of", "pow("}};
+    }
 }
 
 #endif
