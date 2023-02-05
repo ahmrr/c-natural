@@ -1,0 +1,52 @@
+baseURL = "/"
+themesDir = "themes"
+theme = "hugo-whisper-theme"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.55.0"
+
+# Controls how many words are printed in the content summary on the docs homepage.
+# See https://gohugo.io/content-management/summaries/
+summaryLength = 30
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Docs"
+    url = "/docs/"
+    weight = 2
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/ahmrr/c-natural"
+    weight = 2
+
+[params]
+  google_analytics_id=""
+  homepage_button_link = '/docs'
+  homepage_button_text = 'Read The Docs'
+  homepage_intro = 'The C-Natural programming language, developed for CUHackit 2023 by Ahmer Raza, Elliot Phillips, Madeline Woehrman, and Stephen Becker.'
+  homepage_image = '/images/terminal.gif'
+
+  [params.homepage_meta_tags]
+    meta_description = "The C-Natural programming language."
+    meta_og_title = "Hugo Whisper Theme"
+    meta_og_type = "website"
+    meta_og_url = "<modify>"
+    meta_og_image = "<modify>"
+    meta_og_description = "The C-Natural programming language."
+    meta_twitter_card = "summary"
+    meta_twitter_site = "<modify>"
+    meta_twitter_creator = "<modify>"
+
+  [params.logo]
+      mobile = "/images/logo.svg"
+      standard  = "/images/logo.svg"
