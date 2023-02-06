@@ -1,0 +1,7 @@
+set x to 9
+set y to 10
+set b to 16
+set a to "literally hilarious"
+print a
+print y
+print x
