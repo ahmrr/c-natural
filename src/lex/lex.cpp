@@ -499,7 +499,16 @@ void lex::parse(std::ifstream &infile, std::ofstream &outfile)
         }
         // * print statement
         else if (tokens[0] == "print")
-            new_line = indent + "std::cout << " + tokens[1] + " << std::endl;\n";
+        {
+            std::string new_line = std::string(scope, '\t') + "\tstd::cout << ";
+
+            for (int i = 1; i < tokens.size(); ++i) {
+                new_line += tokens[i];
+            }
+
+            new_line += " << std::endl;\n";
+            theQueue->push(new_line);
+        }
         // * add assignment statement
         else if (tokens[0] == "add")
             new_line = indent + tokens[3] + " += " + tokens[1] + ";\n";
